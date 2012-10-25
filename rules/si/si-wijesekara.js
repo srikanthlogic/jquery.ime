@@ -11,7 +11,7 @@
 		license: 'GPLv3',
 		version: '1.0',
 		contextLength: 2,
-		maxKeyLength: 0,
+		maxKeyLength: 1,
 		patterns: [
 			['`', '\u0DCA\u200D\u0DBB'],
 			['~', '\u0DBB\u0DCA\u200D'],
