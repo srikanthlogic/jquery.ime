@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 (function ( $ ) {
+=======
+( function ( $ ) {
+>>>>>>> c13638df0370b74f9ea23c05fe4615f09cb96c02
 	'use strict';
 
 	function IMESelector ( element, options ) {
