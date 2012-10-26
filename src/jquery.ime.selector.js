@@ -98,14 +98,14 @@
 			var ime = $( e.target ).data( 'ime' );
 
 			if ( isShortcutKey( e ) ) {
-				ime.toggle();
-
 				if ( ime.isActive() ) {
+					this.disableIM();
+				} else {
 					if ( this.inputmethod !== null ) {
 						this.selectIM( this.inputmethod.id );
+					} else {
+						this.selectLanguage ( $.ime.preferences.getLanguage() );
 					}
-				} else {
-					this.disableIM();
 				}
 
 				e.preventDefault();
@@ -140,10 +140,10 @@
 			this.$menu.find( 'li.ime-list-title' ).text( $.ime.languages[languageCode].autonym );
 			this.prepareInputMethods( languageCode );
 			this.$menu.removeClass( 'open' );
-
 			// And select the default inputmethod
-			this.selectIM( $.ime.preferences.getIM( languageCode ) );
 			this.$element.data( 'ime' ).setLanguage( languageCode );
+			this.inputmethod = null;
+			this.selectIM( $.ime.preferences.getIM( languageCode ) );
 		},
 
 		/**
