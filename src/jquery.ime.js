@@ -4,10 +4,11 @@
 	function IME ( element, options ) {
 		this.$element = $( element );
 		// This needs to be delayed here since extending language list happens at DOM ready
-		$.ime.defaults.languages = Object.keys( $.ime.languages );
+		$.ime.defaults.languages = arrayKeys( $.ime.languages );
 		this.options = $.extend( {}, $.ime.defaults, options );
 		this.active = false;
 		this.inputmethod = null;
+		this.language = null;
 		this.context = '';
 		this.selector = this.$element.imeselector( this.options );
 		this.listen();
@@ -17,7 +18,7 @@
 		constructor: IME,
 
 		listen: function () {
-			this.$element.on( 'keypress', $.proxy( this.keypress, this ) );
+			this.$element.on( 'keypress.ime', $.proxy( this.keypress, this ) );
 		},
 
 		/**
@@ -170,8 +171,13 @@
 			$.ime.preferences.setIM( inputmethodId );
 		},
 
-		setLanguage: function( languageCode ) {
+		setLanguage: function ( languageCode ) {
+			this.language = languageCode;
 			$.ime.preferences.setLanguage( languageCode );
+		},
+
+		getLanguage: function () {
+			return this.language;
 		},
 
 		load: function ( name, callback ) {
@@ -212,6 +218,12 @@
 				data = $this.data( 'ime' ),
 				options = typeof option === 'object' && option;
 
+			if ( $this.prop( 'readonly' ) || $this.prop( 'disabled' ) ) {
+				return;
+			}
+			if ( $this.hasClass( 'noime' ) ) {
+				return;
+			}
 			if ( !data ) {
 				data = new IME( this, options );
 				$this.data( 'ime', data );

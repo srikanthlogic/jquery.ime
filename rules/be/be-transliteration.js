@@ -1,16 +1,17 @@
 ( function ( $ ) {
 	'use strict';
 
-	var ruTransliteration = {
-		id: 'ru-transliteration',
-		name: 'Russian Transliteration',
-		description: 'Russian transliteration',
-		date: '2012-10-16',
+	var beTransliteration = {
+		id: 'be-transliteration',
+		name: 'Belarusian Transliteration',
+		description: 'Belarusian transliteration per Belarusian winkeys',
+		date: '2012-11-06',
 		URL: 'http://github.com/wikimedia/jquery.ime',
-		author: 'Amir (Алексей) Aharoni',
+		author: 'Pavel Selitskas',
 		license: 'GPLv3',
 		version: '1.0',
 		patterns: [
+			['~', 'Ё'],
 			['Q', 'Й'],
 			['W', 'Ц'],
 			['E', 'У'],
@@ -19,10 +20,10 @@
 			['Y', 'Н'],
 			['U', 'Г'],
 			['I', 'Ш'],
-			['O', 'Щ'],
+			['O', 'Ў'],
 			['P', 'З'],
 			['{', 'Х'],
-			['}', 'Ъ'],
+			['}', '\''],
 			['A', 'Ф'],
 			['S', 'Ы'],
 			['D', 'В'],
@@ -38,13 +39,14 @@
 			['X', 'Ч'],
 			['C', 'С'],
 			['V', 'М'],
-			['B', 'И'],
+			['B', 'І'],
 			['N', 'Т'],
 			['M', 'Ь'],
 			['<', 'Б'],
 			['>', 'Ю'],
 			['\\?', ','],
 
+			['`', 'ё'],
 			['q', 'й'],
 			['w', 'ц'],
 			['e', 'у'],
@@ -53,10 +55,10 @@
 			['y', 'н'],
 			['u', 'г'],
 			['i', 'ш'],
-			['o', 'щ'],
+			['o', 'ў'],
 			['p', 'з'],
 			['\\[', 'х'],
-			['\\]', 'ъ'],
+			['\\]', '\''],
 			['a', 'ф'],
 			['s', 'ы'],
 			['d', 'в'],
@@ -72,17 +74,14 @@
 			['x', 'ч'],
 			['c', 'с'],
 			['v', 'м'],
-			['b', 'и'],
+			['b', 'і'],
 			['n', 'т'],
 			['m', 'ь'],
 			[',', 'б'],
 			['\\.', 'ю'],
 			['/', '.'],
 
-			['`', 'ё'],
-			['~', 'Ё'],
 
-			// ! is the same // 1
 			['@', '"'], // 2
 			['#', '№'], // 3
 			['\\$', ';'], // 4
@@ -91,6 +90,6 @@
 			['&', '?']] // 7
 			// '*', '(' and ')' are the same    // 8, 9, 0
 	};
-	$.ime.register( ruTransliteration );
+	$.ime.register( beTransliteration );
 
 }( jQuery ) );

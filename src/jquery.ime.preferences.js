@@ -3,6 +3,7 @@
 
 	$.extend( $.ime.preferences, {
 		registry: {
+			isDirty: false,
 			language : 'en',
 			previousLanguages: [], // array of previous languages
 			imes: {
@@ -11,11 +12,18 @@
 		},
 
 		setLanguage: function ( language ) {
+			// Do nothing if there's no actual change
+			if ( language === this.registry.language ) {
+				return;
+			}
+
 			this.registry.language = language;
+			this.registry.isDirty = true;
 			if ( !this.registry.previousLanguages ) {
 				this.registry.previousLanguages = [];
 			}
-			//Add to the previous languages, but avoid duplicates.
+
+			// Add to the previous languages, but avoid duplicates.
 			if ( $.inArray( language, this.registry.previousLanguages ) === -1 ) {
 				this.registry.previousLanguages.push( language );
 			}
@@ -31,16 +39,23 @@
 
 		// Set the given IM as the last used for the language
 		setIM: function ( inputMethod ) {
-			if( !this.registry.imes ){
-				this.registry.imes= {};
+			if ( !this.registry.imes ) {
+				this.registry.imes = {};
 			}
+
+			// Do nothing if there's no actual change
+			if ( inputMethod === this.registry.imes[this.registry.language] ) {
+				return;
+			}
+
 			this.registry.imes[this.getLanguage()] = inputMethod;
+			this.registry.isDirty = true;
 		},
 
 		// Return the last used or the default IM for language
 		getIM: function ( language ) {
-			if( !this.registry.imes ){
-				this.registry.imes= {};
+			if ( !this.registry.imes ) {
+				this.registry.imes = {};
 			}
 			return this.registry.imes[language] || $.ime.languages[language].inputmethods[0];
 		},

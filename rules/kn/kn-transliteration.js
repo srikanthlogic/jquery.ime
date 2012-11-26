@@ -3,15 +3,15 @@
 
 	var knTransliteration = {
 		id: 'kn-transliteration',
-		name: 'Kannada Transliteration',
+		name: 'ಲಿಪ್ಯಂತರಣ',
 		description: 'Kannada transliteration',
 		date: '2012-10-14',
 		URL: 'http://github.com/wikimedia/jquery.ime',
 		author: 'M G Harish, HP Nadig ',
 		license: 'GPLv3',
 		version: '1.0',
-		contextLength: 4,
-		maxKeyLength: 2,
+		contextLength: 5,
+		maxKeyLength: 3,
 		patterns: [
 			['ಕ್h','c','ಚ್'],
 			['\\\\([A-Za-z\\>_~\\.0-9])','\\\\','$1'],
@@ -43,12 +43,12 @@
 			['ಅu', 'ಔ'],
 			['ಋR', 'ೠ'],
 			['ಓ~M', 'ॐ'],
-			 
+
 			['~l', 'ೞ್'],
 			['~h', 'ಹ್'],
 			['~r', 'ಱ್'],
-			['q', 'ೞ್'],
-			['Q', 'ಱ್'],
+			['q', 'ಱ್'],
+			['Q', 'ೞ್'],
 			['ಕ್h', 'ಖ್'],
 			['ಗ್h', 'ಘ್'],
 			['~g', 'ಙ್'],
@@ -90,9 +90,9 @@
 			['([ಕ-ಹೞ]಼?)ೃo', '$1್ರೊ'],
 			['([ಕ-ಹೞ]಼?)ೃO', '$1್ರೋ'],
 			['([ಕ-ಹೞ]಼?)ೃ\\~', '$1್ರ್'],
-			 
+
 			['।\\.', '॥'],
-			 
+
 			['a', 'ಅ'],
 			['b', 'ಬ್'],
 			['c', 'ಚ್'],
