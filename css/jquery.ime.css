@@ -1,20 +1,26 @@
-div.imeselector {
+.imeselector {
 	position: absolute;
-	background: url('../images/ime-active.svg') no-repeat scroll left center
-		transparent;
-	background-size: 15px;
+	/* @embed */
+	background: url('../images/ime-active.png') no-repeat 3px center rgba(255,255,255,0.75);
 	cursor: pointer;
 	height: 15px;
-	margin: 1px 0 0;
 	font-size: small;
-	padding-left: 20px;
+	padding: 2px 2px 1px 20px;
+	box-shadow: 0 1px 3px 0 #777;
 	margin-top: 0;
 	text-align: left;
 	font-family: 'sans';
 	white-space: nowrap;
+	z-index: 9999;
 }
 
-div.imeselector a {
+div.imeselector:hover {
+	box-shadow: 0 1px 3px 0 #565656;
+	border-top: none;
+	background-color: rgba(255,255,255,0.85);
+}
+
+.imeselector a {
 	text-decoration: none;
 	outline: none;
 	color: #222222;
@@ -23,11 +29,35 @@ div.imeselector a {
 	padding-bottom: 4px;
 }
 
-.ime-disable-link span {
+.ime-setting-caret {
+	margin-left: 2px;
+	margin-top: 8px;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid #565656;
+	content: "";
+	display: inline-block;
+	height: 0;
+	vertical-align: top;
+	width: 0;
+
+}
+
+span.ime-disable-link {
+	color: #222222;
+	line-height: 1em;
+	padding-top: 4px;
+	padding-left: 20px;
+	padding-bottom: 4px;
+	white-space: nowrap;
+}
+
+span.ime-disable-shortcut {
 	text-align: right;
 	margin-left: 10px;
 	color: #888;
 	font-size: smaller;
+	padding-right: 4px;
 }
 
 .ime-disable-link:hover span {
@@ -40,63 +70,19 @@ div.imeselector a {
 	border-bottom: solid 1px #39d;
 	text-align: left;
 	font-size: larger;
+	font-weight: normal;
 	padding-bottom: 5px;
 	padding-left: 20px;
 	padding-top: 9px;
-	margin-bottom: 1px;
-	cursor: default;
+	margin: 0 0 1px;
 }
 
-.imeselector .caret {
-	margin-left: 2px;
-	margin-top: 8px;
-}
-
-.caret {
-	border-left: 4px solid transparent;
-	border-right: 4px solid transparent;
-	border-top: 4px solid #000000;
-	content: "";
-	display: inline-block;
-	height: 0;
-	vertical-align: top;
-	width: 0;
-}
-
-.imeselector-menu .sub-menu {
-	left: 100%;
-	position: absolute;
-	top: 0;
-	visibility: hidden;
-	margin-top: -1px;
-}
-
-.imeselector-menu li:hover .sub-menu {
-	visibility: visible;
+.ime-language-list-wrapper {
+	position: relative;
+	padding: 0;
 	display: block;
-}
-
-.imeselector-menu .checked a {
-	background: url(../images/tick.svg) 4px no-repeat;
-	background-size: 12px 12px;
-}
-
-ul.ime-language-list {
-	overflow: auto;
+	overflow-y: auto;
 	max-height: 150px;
-	width: 300px;
-	list-style: none;
-	padding: 0 0;
-}
-
-div.ime-language-list {
-	overflow: hidden;
-	width: 250px;
-	padding: 0 0;
-}
-
-.ime-language-list {
-	margin: 0;
 }
 
 .imeselector-menu {
@@ -106,9 +92,9 @@ div.ime-language-list {
 	z-index: 1000;
 	display: none;
 	float: left;
+	margin-top: 13px;
 	min-width: 160px;
 	padding: 0;
-	list-style: none;
 	border: 1px solid #888;
 	background-color: #FFFFFF;
 	-webkit-border-radius: 5px;
@@ -121,6 +107,13 @@ div.ime-language-list {
 	-moz-background-clip: padding;
 	background-clip: padding-box;
 	text-align: left;
+}
+
+.imeselector-menu ul {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 
 /* The triangle shaped callout */
@@ -146,23 +139,43 @@ div.ime-language-list {
 	top: -6px;
 }
 
+.imeselector-menu.position-top:before {
+	border-bottom: 0 none;
+	border-top: 7px solid #888;
+	top: auto;
+	bottom: -7px;
+}
+
+.imeselector-menu.position-top:after {
+	border-bottom: 0 none;
+	border-top: 6px solid #FFFFFF;
+	top: auto;
+	bottom: -6px;
+}
+
+.imeselector-menu .checked {
+	/* @embed */
+	background: url(../images/tick.png) 4px center no-repeat;
+}
+
 .imeselector-menu .ime-help-link {
 	background-color: #f0f0f0;
 	border-radius: 0 0 5px 5px;
 	border-top: 1px solid #ddd;
 	margin-top: 6px;
-	padding: 2px 0 2px 0;
+	padding: 2px 0;
 	color: #444;
 }
 
-.imeselector-menu .ime-help-link>a:hover {
+.imeselector-menu .ime-help-link > a:hover {
 	background-color: #f0f0f0;
 	color: #000;
 }
 
 .imeselector-menu a {
 	display: block;
-	padding: 3px 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	clear: both;
 	font-weight: normal;
 	color: #333333;
@@ -170,7 +183,7 @@ div.ime-language-list {
 	white-space: nowrap;
 }
 
-.imeselector-menu li>a:hover {
+.imeselector-menu li > a:hover {
 	text-decoration: none;
 	color: #ffffff;
 	background-color: #5089e8;
